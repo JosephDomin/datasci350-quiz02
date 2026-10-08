@@ -1,0 +1,21 @@
+---
+title: "Box Office Numbers"
+jupyter: python3
+---
+```{python}
+#| include: false
+import pandas as pd
+import matplotlib.pyplot as plt
+
+films = pd.read_csv("films.csv")
+```
+
+This website explores 104 well-known films released between 1980 and 2025. The dataset includes film titles, franchises, budgets, worldwide revenues, runtimes, and IMDb ratings. Financial figures are approximate, measured in millions of US dollars, and not adjusted for inflation.
+
+## Explore the films
+
+- [Budget and Revenue](budget-revenue.qmd)
+- [Runtime and Ratings](runtime-rating.qmd)
+- [The Bond Films](bond.qmd)
+
+AI Usage: Help me troubleshoot.

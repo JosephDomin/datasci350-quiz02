@@ -1,0 +1,12 @@
+{
+  "hash": "83da34d147aca364a878f0a288d69125",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Runtime & Ratings\"\njupyter: python3\n---\n\n::: {#5154adfb .cell execution_count=1}\n``` {.python .cell-code}\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nfilms = pd.read_csv(\"films.csv\")\n```\n:::\n\n\nThis page compares film runtimes with IMDb ratings. In @fig-runtime-rating, each point represents one film.\n\n::: {#cell-fig-runtime-rating .cell execution_count=2}\n``` {.python .cell-code}\nplt.scatter(films[\"runtime_min\"], films[\"imdb_rating\"])\nplt.xlabel(\"Runtime (minutes)\")\nplt.ylabel(\"IMDb rating (0–10)\")\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![Film runtime in minutes and IMDb rating](runtime-rating_files/figure-html/fig-runtime-rating-output-1.png){#fig-runtime-rating width=590 height=431}\n:::\n:::\n\n\n## Mean Rating Per Decade\n\nThis graph shows mean rating per decade\n\n::: {#0a6aef71 .cell execution_count=3}\n``` {.python .cell-code}\nfilms[\"decade\"] = films[\"year\"] // 10 * 10\nfilms.groupby(\"decade\")[\"imdb_rating\"].mean().round(2)\n```\n\n::: {.cell-output .cell-output-display execution_count=3}\n```\ndecade\n1980    8.01\n1990    7.70\n2000    7.94\n2010    7.83\n2020    7.44\nName: imdb_rating, dtype: float64\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "runtime-rating_files/figure-html"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

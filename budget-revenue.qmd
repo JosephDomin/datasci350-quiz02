@@ -1,0 +1,25 @@
+---
+title: "Budget and Revenue"
+jupyter: python3
+---
+
+```{python}
+#| echo: true
+import pandas as pd
+import matplotlib.pyplot as plt
+
+films = pd.read_csv("films.csv")
+```
+
+This page compares film production budgets with worldwide revenues. In @fig-budget-revenue, each point represents one film, with both amounts measured in millions of US dollars.
+
+```{python}
+#| echo: true
+#| fig-cap: "Production budget and worldwide revenue, in millions of US dollars"
+#| label: fig-budget-revenue
+
+plt.scatter(films["budget_musd"], films["revenue_musd"])
+plt.xlabel("Production budget (millions of US dollars)")
+plt.ylabel("Worldwide revenue (millions of US dollars)")
+plt.show()
+```

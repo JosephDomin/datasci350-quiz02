@@ -1,0 +1,146 @@
+Task 1 
+quarto create project website . create website
+
+Task 2 
+
+git add .gitignore - stage
+git commit -m "Add gitignore" - commit
+
+Task 3
+
+Box Office Numbers - change title
+
+Task 4
+
+Deleted about.qmd and updated nav bar 
+
+Task 5
+
+Changed theme to sketchy 
+execute:freeze: auto
+
+Task 6
+
+---
+title: "Home Page" - yaml header to set title and to run in python
+jupyter: python3
+---
+```{python} - python code chunk 
+#| include: false - to run but not show
+import pandas as pd
+import matplotlib.pyplot as plt
+
+films = pd.read_csv("films.csv") - these three lines you said to put at beginning 
+```
+
+This website explores 104 well-known films released between 1980 and 2025. The dataset includes film titles, franchises, budgets, worldwide revenues, runtimes, and IMDb ratings. Financial figures are approximate, measured in millions of US dollars, and not adjusted for inflation.
+
+## Explore the films
+
+- [Budget and Revenue](budget-revenue.qmd)
+- [Runtime and Ratings](runtime-rating.qmd)
+- [The Bond Films](bond.qmd)
+
+AI Usage: Help me troubleshoot and create guide pdf. 
+
+Task 7:
+---
+title: "Budget and Revenue" - yaml header
+jupyter: python3
+---
+
+```{python}
+#| echo: true - run code and show it
+import pandas as pd
+import matplotlib.pyplot as plt
+
+films = pd.read_csv("films.csv")
+```
+
+This page compares film production budgets with worldwide revenues. In @fig-budget-revenue, each point represents one film, with both amounts measured in millions of US dollars.
+
+```{python} - 
+#| echo: true
+#| fig-cap: "Production budget and worldwide revenue, in millions of US dollars." - caption
+#| label: fig-budget-revenue - label
+
+plt.scatter(films["budget_musd"], films["revenue_musd"]) - scatter plot
+plt.xlabel("Production budget (millions of US dollars)") - 
+plt.ylabel("Worldwide revenue (millions of US dollars)")
+plt.show()
+```
+
+Task 8
+
+---
+title: "Runtime & Ratings"
+jupyter: python3
+---
+
+```{python}
+#| echo: true
+import pandas as pd
+import matplotlib.pyplot as plt
+
+films = pd.read_csv("films.csv")
+```
+
+This page compares film runtimes with IMDb ratings. In @fig-runtime-rating, each point represents one film.
+
+```{python}
+#| echo: true
+#| fig-cap: "Film runtime in minutes and IMDb rating"
+#| label: fig-runtime-ratubgs
+
+plt.scatter(films["runtime_min"], films["imdb_rating"])
+plt.xlabel("Runtime (minutes)")
+plt.ylabel("IMDb rating (0–10)")
+plt.show()
+```
+## Mean Rating Per Decade
+
+This graph shows mean rating per decade
+```{python}
+films["decade"] = films["year"] // 10 * 10
+films.groupby("decade")["imdb_rating"].mean().round(2)
+```
+
+Task 9 
+
+---
+title: "The Bond Films"
+jupyter: python3
+---
+
+```{python}
+#| echo: true
+import pandas as pd
+import matplotlib.pyplot as plt
+
+films = pd.read_csv("films.csv")
+
+bond = films[films["franchise"] == "James Bond"]
+bond = bond.sort_values("year") - sorting chronologically 
+```
+
+The Bond films in this dataset run from `{python} int(bond["year"].min())` to `{python} int(bond["year"].max())`.
+
+```{python}
+#| echo: true
+#| fig-cap: "Worldwide revenue of James Bond films over time."
+#| label: fig-bond-revenue
+
+plt.plot(bond["year"], bond["revenue_musd"])
+plt.xlabel("Release year")
+plt.ylabel("Worldwide revenue (millions of US dollars)")
+plt.show()
+```
+
+Task 10
+
+quarto render
+
+
+
+
+
